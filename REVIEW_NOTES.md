@@ -314,3 +314,15 @@ like "2I0" in Cormorant's old-style figures.
   word must match, name hits rank above stone/type hits above intention/
   description hits. Pages without the catalogue load it on demand when search
   opens, so the light help/legal pages stay light.
+* **Verification:** automated sweep (16 URLs × 3 viewports, plus new checks for
+  the search panel opening with focus, live suggestions, the crystal-guide
+  suggestion, arrow-key navigation, submitting to the shop, the search chip,
+  the sidebar box mirroring the query, the empty state, clearing the chip, and
+  on-demand catalogue loading on a page without `products.js`): **0 issues**.
+  HTML validation clean apart from the documented `<progress>` preference —
+  it did catch the sidebar search form having no submit control (WCAG H32),
+  now a visually-hidden submit button so Enter works for everyone.
+* **Note on the test environment:** two audit runs were invalidated by a stale
+  static server holding port 8080 and serving an older build (163 phantom
+  issues). Test servers are now started on port 8099 and the scripts take a
+  `BASE` environment variable.
