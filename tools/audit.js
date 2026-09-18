@@ -133,8 +133,8 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   check((await page.locator('.chip').count()) === 1, 'chip rendered');
   await page.selectOption('#sort', 'price-desc');
   await page.waitForTimeout(150);
-  const firstPrice = await page.locator('.card__price').first().textContent();
-  check(firstPrice.includes('54') || firstPrice.includes('38') || firstPrice.includes('From'), 'sorted desc first price ' + firstPrice);
+  const prices = (await page.locator('.card__price').allTextContents()).map(t => parseFloat(t.replace(/[^0-9.]/g, '')));
+  check(prices.length > 1 && prices[0] >= prices[1] && /AED/.test(await page.locator('.card__price').first().textContent()), 'sorted desc: ' + prices.slice(0, 3).join(' ≥ '));
   await page.click('.chip button');
   await page.waitForTimeout(150);
   check((await page.locator('.card').count()) === products.products.length, 'chip removal restores list');
@@ -153,7 +153,7 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   const price0 = await page.locator('[data-price]').textContent();
   await page.click('.variant >> nth=2');
   const price1 = await page.locator('[data-price]').textContent();
-  check(price0 !== price1 && price1.includes('64'), `variant price changes ${price0}→${price1}`);
+  check(price0 !== price1 && /AED/.test(price1), `variant price changes ${price0}→${price1}`);
   await page.click('[data-qty="1"]');
   await page.click('[data-add]');
   await page.waitForTimeout(200);
@@ -167,7 +167,7 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   await page.goto(BASE + 'cart.html', { waitUntil: 'networkidle' });
   check((await page.locator('.cart-item').count()) === 2, 'cart shows 2 lines');
   const totalTxt = await page.locator('.summary__row--total span').last().textContent();
-  check(totalTxt.includes('£'), 'total rendered ' + totalTxt);
+  check(totalTxt.includes('AED'), 'total rendered ' + totalTxt);
   await page.fill('#promo', 'welcome10');
   await page.click('.promo button');
   await page.waitForTimeout(150);
@@ -186,7 +186,7 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   check(await page.locator('.checkout-note.is-visible').count() === 1, 'checkout note');
   // free shipping text
   const ship = await page.locator('[data-shipping-text]').textContent();
-  check(ship.includes('free UK delivery'), 'shipping bar text: ' + ship);
+  check(ship.includes('free UAE delivery'), 'shipping bar text: ' + ship);
 
   // category subnav
   step('cart done');

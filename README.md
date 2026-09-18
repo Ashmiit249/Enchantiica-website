@@ -1,7 +1,12 @@
 # Enchantiica — crystal & crystal jewellery storefront
 
-A complete, dependency-free, multi-page e-commerce front end for **Enchantiica**
+A complete, dependency-free, multi-page e-commerce front end for **Enchantiica**,
+a Dubai-based crystal and crystal-jewellery shop
 (Instagram: [@enchantiica](https://www.instagram.com/enchantiica)).
+
+Prices are in UAE dirhams (AED), delivery copy covers Dubai / UAE / GCC /
+international with cash on delivery, ring sizes are US, and the legal pages
+reference UAE data-protection and consumer law.
 
 Plain HTML, CSS and vanilla JavaScript. There is no build step: open `index.html`
 in a browser, or upload the folder to any static host (Netlify, Vercel, GitHub
@@ -164,7 +169,13 @@ the `href`.
   `variants` + a `prices` map for per-variant pricing.
 * **Crystal meanings** shown on product pages — the `CRYSTALS` object in the
   same file.
-* **Free-delivery threshold, delivery cost, promo codes** — top of `js/cart.js`.
+* **Free-delivery threshold, delivery cost, promo codes** — top of `js/cart.js`
+  (AED 250 threshold, AED 20 standard). The delivery table, cash-on-delivery
+  fee and timings on `shipping.html` / `faq.html` are plain text — keep them
+  in step if you change the constants.
+* **Currency** — `formatPrice()` in `js/products.js` (`Intl.NumberFormat`,
+  AED with the code shown as a prefix). Price bands for the shop filter are
+  in `js/shop.js`.
 * **Colours, fonts, spacing** — the `:root` tokens at the top of
   `css/styles.css`.
 * **Header / footer / announcement bar** — repeated in every HTML file so pages

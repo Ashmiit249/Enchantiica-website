@@ -191,7 +191,7 @@
           '<button class="btn" type="button" data-add>Add to bag</button>' +
         '</div>' +
         '<ul class="product__delivery">' +
-          '<li>' + deliveryIcon + '<span>Free UK delivery on orders over £50 — otherwise £3.50. <a class="link" href="shipping.html">Delivery details</a></span></li>' +
+          '<li>' + deliveryIcon + '<span>Free delivery across the UAE on orders over AED 250 — otherwise AED 20. Cash on delivery available. <a class="link" href="shipping.html">Delivery details</a></span></li>' +
           '<li>' + deliveryIcon + '<span>Cleansed and charged before dispatch, wrapped in plastic-free packaging.</span></li>' +
           '<li>' + deliveryIcon + '<span>30-day returns on unworn items. <a class="link" href="returns.html">Returns policy</a></span></li>' +
         '</ul>' +

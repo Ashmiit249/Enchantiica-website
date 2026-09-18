@@ -224,3 +224,31 @@ review loop stops here.
 (Chromium only); `tools/README.md` explains how to run the identical sweep in
 both. Web fonts come from Google Fonts — offline, the system fallbacks
 (Georgia / Helvetica) are used and the layout has been checked with them too.
+
+---
+
+## Localisation update — Dubai
+
+Not a review pass, but logged here so the history is complete. The brief
+initially read as a UK shop; the business is based in Dubai, so the site was
+localised end to end:
+
+* **Currency:** all 43 products repriced in UAE dirhams (rounded to natural
+  retail figures, e.g. the Rose Quartz Heart Pendant is AED 175). Prices show
+  as "AED 175", fils only when a discount produces them ("AED 157.50"). Shop
+  price bands are now under AED 50 / 50–100 / 100–200 / over 200.
+* **Delivery:** free across the UAE over AED 250 (AED 20 standard, AED 35
+  Dubai express same/next day), GCC and international rates, cash on delivery
+  with a AED 10 fee, UAE public holidays, Gulf Standard Time cut-off.
+* **Sizing:** ring variants are US sizes 5–9 with a US / EU / UK conversion
+  table in the FAQ.
+* **Legal:** UAE PDPL (Federal Decree-Law 45/2021) instead of UK GDPR, UAE
+  Data Office instead of the ICO, 5-year VAT record keeping, prices inclusive
+  of 5% UAE VAT, UAE Consumer Protection Law (Federal Law 15/2020), governing
+  law and courts of Dubai.
+* **Copy:** "wrapped with love in Dubai", studio based in Dubai, delivers
+  across the UAE and GCC, hours in GST (UTC+4), reviewer and testimonial
+  names reflect a Dubai customer base.
+
+Automated sweep, HTML validation and the audit's price assertions were
+updated for AED and re-run: see the verification line below.

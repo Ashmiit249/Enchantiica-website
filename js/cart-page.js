@@ -67,8 +67,8 @@
 
     var progress = Math.min(100, Math.round(((t.subtotal - t.discount) / t.freeShippingThreshold) * 100));
     var shippingText = t.freeShippingRemaining > 0
-      ? 'You’re <strong>' + E.formatPrice(t.freeShippingRemaining) + '</strong> away from free UK delivery'
-      : '<strong>You’ve unlocked free UK delivery</strong>';
+      ? 'You’re <strong>' + E.formatPrice(t.freeShippingRemaining) + '</strong> away from free UAE delivery'
+      : '<strong>You’ve unlocked free UAE delivery</strong>';
 
     summaryEl.querySelector('[data-shipping-text]').innerHTML = shippingText;
     summaryEl.querySelector('[data-shipping-fill]').style.width = progress + '%';
@@ -78,7 +78,7 @@
     if (t.discount > 0) {
       rows += '<div class="summary__row summary__discount"><span>Discount (' + E.escapeHTML(t.promo) + ') <button type="button" class="cart-item__remove" data-remove-promo>Remove</button></span><span>−' + E.formatPrice(t.discount) + '</span></div>';
     }
-    rows += '<div class="summary__row"><span>UK delivery</span><span>' + (t.shipping === 0 ? 'Free' : E.formatPrice(t.shipping)) + '</span></div>';
+    rows += '<div class="summary__row"><span>Delivery (UAE)</span><span>' + (t.shipping === 0 ? 'Free' : E.formatPrice(t.shipping)) + '</span></div>';
     rows += '<div class="summary__row summary__row--total"><span>Total</span><span>' + E.formatPrice(t.total) + '</span></div>';
     summaryEl.querySelector('[data-rows]').innerHTML = rows;
 

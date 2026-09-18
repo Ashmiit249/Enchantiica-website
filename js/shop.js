@@ -25,10 +25,10 @@
   var overlay = app.querySelector('.filters-overlay');
 
   var PRICE_BANDS = [
-    { id: 'under-10', label: 'Under £10', min: 0, max: 9.99 },
-    { id: '10-25', label: '£10 – £25', min: 10, max: 25 },
-    { id: '25-50', label: '£25 – £50', min: 25.01, max: 50 },
-    { id: 'over-50', label: 'Over £50', min: 50.01, max: Infinity }
+    { id: 'under-50', label: 'Under AED 50', min: 0, max: 49.99 },
+    { id: '50-100', label: 'AED 50 – 100', min: 50, max: 100 },
+    { id: '100-200', label: 'AED 100 – 200', min: 100.01, max: 200 },
+    { id: 'over-200', label: 'Over AED 200', min: 200.01, max: Infinity }
   ];
 
   var state = { category: [], sub: [], crystal: [], good: [], price: [], sort: 'featured' };

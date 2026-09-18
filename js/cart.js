@@ -9,8 +9,8 @@
   'use strict';
 
   var KEY = 'enchantiica.cart.v1';
-  var FREE_SHIPPING_THRESHOLD = 50;
-  var STANDARD_SHIPPING = 3.5;
+  var FREE_SHIPPING_THRESHOLD = 250; /* AED — free delivery across the UAE */
+  var STANDARD_SHIPPING = 20;        /* AED — standard UAE courier */
   var PROMOS = { WELCOME10: 0.10, ENCHANTED15: 0.15 };
 
   function read() {
