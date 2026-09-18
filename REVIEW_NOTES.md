@@ -196,3 +196,31 @@ and packaging the audit so it can be re-run outside this environment.
 | 3 | Tooling | The audit only existed in this sandbox, so the "tested in Chrome, Safari and Firefox" claim could not be reproduced by anyone else, and Firefox/WebKit could not be run here at all. | `tools/audit.js` + `tools/README.md` added: the same sweep, runnable locally with `BROWSER=firefox` or `BROWSER=webkit` via Playwright. Not part of the site build. |
 
 ### Verification
+
+Automated sweep on the finished site: **0 issues**. HTML validation clean (bar
+the documented `<progress>` preference). Step badges re-checked visually on
+About and Returns.
+
+---
+
+## Pass 5 — confirmation pass
+
+Full automated sweep (15 URLs × 3 viewports, axe, links, all interactions)
+re-run on the committed site: **0 issues**. A final read-through of the
+screenshots from passes 3 and 4 found nothing further worth changing, so the
+review loop stops here.
+
+## Summary of the loop
+
+| Pass | Focus | Items fixed |
+|------|-------|-------------|
+| 1 | Functional & layout, every page/viewport/interaction | 15 |
+| 2 | Design polish, performance, accessibility, UX friction | 20 |
+| 3 | Mobile sweep, spacing rhythm, page weight, HTML validation | 7 |
+| 4 | Final critique, tooling | 1 (+ tooling) |
+| 5 | Confirmation | 0 |
+
+**Known limits.** Firefox and Safari were not executed in this environment
+(Chromium only); `tools/README.md` explains how to run the identical sweep in
+both. Web fonts come from Google Fonts — offline, the system fallbacks
+(Georgia / Helvetica) are used and the layout has been checked with them too.
