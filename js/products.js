@@ -54,6 +54,7 @@
       name: 'Rose Quartz',
       colour: 'Soft pink',
       chakra: 'Heart',
+      benefits: ['Encourages self-love and compassion', 'Soothes emotional wounds and heartache', 'Invites gentle, loving energy into relationships', 'Calms stress and supports restful sleep'],
       meaning: 'Rose Quartz is the stone of unconditional love. Gentle and soothing, it is traditionally used to open the heart, encourage self-compassion and ease emotional wounds.',
       use: 'Keep it close when you need a little tenderness — on your bedside table, in your pocket, or worn over the heart.'
     },
@@ -61,6 +62,7 @@
       name: 'Amethyst',
       colour: 'Violet to deep purple',
       chakra: 'Third eye & crown',
+      benefits: ['Quietens a busy, anxious mind', 'Supports deeper, more restful sleep', 'Offers a sense of spiritual protection', 'Aids meditation and intuition'],
       meaning: 'Amethyst is the classic stone of calm. It is said to quieten a busy mind, support restful sleep and offer a gentle sense of spiritual protection.',
       use: 'Place a piece under your pillow or on your desk when you need to slow your thoughts and settle.'
     },
@@ -68,6 +70,7 @@
       name: 'Citrine',
       colour: 'Honey to golden yellow',
       chakra: 'Solar plexus',
+      benefits: ['Attracts abundance and opportunity', 'Lifts mood and boosts optimism', 'Builds confidence and motivation', 'Energises creative projects'],
       meaning: 'Citrine carries the warmth of sunlight. Known as the merchant’s stone, it is associated with abundance, optimism and the confidence to go after what you want.',
       use: 'Keep it where you work or in your purse as a bright reminder of your own potential.'
     },
@@ -75,6 +78,7 @@
       name: 'Clear Quartz',
       colour: 'Colourless, glassy',
       chakra: 'All (crown)',
+      benefits: ['Amplifies intention and the energy of other stones', 'Brings mental clarity and focus', 'Cleanses and balances energy', 'A versatile all-rounder for beginners'],
       meaning: 'Clear Quartz is known as the master healer. It is believed to amplify intention and the energy of the stones around it, bringing clarity and focus.',
       use: 'Pair it with any other crystal to strengthen your intention, or hold it while you set a goal.'
     },
@@ -82,6 +86,7 @@
       name: 'Moonstone',
       colour: 'Milky white with blue sheen',
       chakra: 'Sacral & crown',
+      benefits: ['Supports new beginnings and change', 'Strengthens intuition', 'Balances emotions and eases stress', 'Traditionally linked to feminine energy and cycles'],
       meaning: 'Moonstone is the stone of new beginnings. Its soft glow is linked to intuition, emotional balance and the natural rhythm of change.',
       use: 'Wear it during times of transition, or when you want to trust your gut a little more.'
     },
@@ -89,6 +94,7 @@
       name: 'Black Tourmaline',
       colour: 'Deep black',
       chakra: 'Root',
+      benefits: ['Shields against negativity', 'Grounds scattered, anxious energy', 'Creates a sense of safety and boundaries', 'A favourite for desks and doorways'],
       meaning: 'Black Tourmaline is the ultimate protective stone. It is traditionally used to ground scattered energy and create a sense of safety and boundaries.',
       use: 'Keep one by the front door, on your desk, or wear it on days when you need a stronger shield.'
     },
@@ -96,6 +102,7 @@
       name: 'Green Aventurine',
       colour: 'Shimmering green',
       chakra: 'Heart',
+      benefits: ['Invites luck and opportunity', 'Encourages optimism and a light heart', 'Supports the courage to try something new', 'Soothes the heart chakra'],
       meaning: 'Green Aventurine is known as the stone of opportunity. It is associated with luck, optimism and the courage to try something new.',
       use: 'Carry it in your pocket before interviews, exams or any moment where you want luck on your side.'
     },
@@ -103,6 +110,7 @@
       name: 'Tiger’s Eye',
       colour: 'Golden brown, chatoyant',
       chakra: 'Solar plexus',
+      benefits: ['Builds courage and confidence', 'Sharpens focus and decision-making', 'Steadies nerves before big moments', 'Grounding, with a warm, motivating energy'],
       meaning: 'Tiger’s Eye is a stone of courage and focus. It is said to steady the nerves, sharpen decision-making and help you act with confidence.',
       use: 'Hold it when you need to speak up, or keep it on your desk to stay on task.'
     },
@@ -110,6 +118,7 @@
       name: 'Selenite',
       colour: 'Translucent white',
       chakra: 'Crown',
+      benefits: ['Cleanses and recharges other crystals', 'Clears stagnant energy from a space', 'Promotes calm and mental clarity', 'Supports meditation and connection'],
       meaning: 'Selenite is a high-vibration cleansing stone. It is used to clear stagnant energy from a space and to recharge other crystals.',
       use: 'Lay your jewellery or tumblestones on a selenite wand overnight to refresh them.'
     },
@@ -117,6 +126,7 @@
       name: 'Black Obsidian',
       colour: 'Glossy black',
       chakra: 'Root',
+      benefits: ['Powerful grounding and protection', 'Helps release what no longer serves you', 'Shields against negativity', 'Encourages honest self-reflection'],
       meaning: 'Black Obsidian is a powerful grounding stone formed from volcanic glass. It is believed to shield against negativity and reveal what needs to be released.',
       use: 'Keep it in your living space or meditation corner when you want to feel anchored.'
     },
@@ -124,6 +134,7 @@
       name: 'Lepidolite',
       colour: 'Lilac',
       chakra: 'Heart & third eye',
+      benefits: ['Eases anxious thoughts', 'Supports emotional balance during stress', 'Promotes calm and restful sleep', 'Gentle support through transitions'],
       meaning: 'Lepidolite is a naturally lithium-rich stone associated with emotional balance and easing anxious thoughts.',
       use: 'Wear it or keep it nearby during stressful stretches.'
     },
@@ -131,6 +142,7 @@
       name: 'Howlite',
       colour: 'White with grey veins',
       chakra: 'Crown',
+      benefits: ['Softens frustration and anger', 'Slows an overactive mind', 'Encourages patience and calm', 'Supports sleep'],
       meaning: 'Howlite is a calming stone used to soften frustration, slow an overactive mind and support sleep.',
       use: 'Keep it on your nightstand as part of a wind-down routine.'
     },
@@ -138,6 +150,7 @@
       name: 'Rhodonite',
       colour: 'Pink with black veins',
       chakra: 'Heart',
+      benefits: ['Encourages compassion and forgiveness', 'Helps heal emotional wounds', 'Balances the emotions', 'Supports self-worth'],
       meaning: 'Rhodonite is known as the stone of compassion — for others and for yourself.',
       use: 'Pair it with Rose Quartz for a gentle self-love practice.'
     },
@@ -145,6 +158,7 @@
       name: 'Smoky Quartz',
       colour: 'Smoky brown',
       chakra: 'Root',
+      benefits: ['Gently grounds and stabilises', 'Helps let go of stress and negativity', 'Eases overwhelm', 'Supports practical, present thinking'],
       meaning: 'Smoky Quartz is a gentle grounding stone said to help release what no longer serves you.',
       use: 'Hold it when you feel overwhelmed and need to come back to earth.'
     },
@@ -152,6 +166,7 @@
       name: 'Hematite',
       colour: 'Metallic silver-grey',
       chakra: 'Root',
+      benefits: ['Strongly grounding and stabilising', 'Sharpens focus and concentration', 'Builds courage and resilience', 'Steadies you on stressful days'],
       meaning: 'Hematite is a dense, grounding stone associated with stability and focus.',
       use: 'Carry it when you need to feel steady and present.'
     },
@@ -159,6 +174,7 @@
       name: 'Pyrite',
       colour: 'Metallic gold',
       chakra: 'Solar plexus',
+      benefits: ['Sparks ambition and determination', 'Associated with wealth and abundance', 'Boosts confidence and willpower', 'Shields against negativity'],
       meaning: 'Pyrite, or fool’s gold, is a stone of ambition and abundance said to spark determination.',
       use: 'Keep it on your desk or beside your goals list.'
     },
@@ -166,6 +182,7 @@
       name: 'Mixed Crystals',
       colour: 'Various',
       chakra: 'Various',
+      benefits: ['Several intentions supported at once', 'Stones chosen to complement each other', 'A simple way to start a collection'],
       meaning: 'A curated combination of stones chosen to work together — for the Seven Chakra pieces, one stone for each energy centre, from grounding red jasper at the root to clear quartz at the crown.',
       use: 'Keep the set together in its pouch or arrange the stones somewhere you will see them every day.'
     }

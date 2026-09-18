@@ -278,3 +278,20 @@ like "2I0" in Cormorant's old-style figures.
 * Automated sweep re-run after the changes: see the line below.
 
 **Verification:** automated sweep after these changes: 0 issues across all pages, viewports and interactions (48 products, filters and bestsellers checks are dynamic); HTML validation unchanged.
+
+## Feature update — dropdown menus and crystal guide
+
+* **Navigation:** Shop, Crystals and Jewellery now open a dropdown on hover
+  (desktop, `hover: hover` devices only) and on keyboard focus (`:focus-within`,
+  so Tab walks into the menu links; Escape closes). The Shop menu has two
+  columns: browse links and shop-by-intention links. In the mobile drawer the
+  same menus become accordions with a 44 px chevron toggle (`aria-expanded`,
+  `aria-controls`). A parent link is marked current when a sub-page is open.
+* **Crystal guide (`crystal-meanings.html`):** one entry per stone (16), each
+  with colour, chakra, meaning, four benefits, how to use, a pairing tip, a
+  labelled image placeholder and a "Shop <stone> (n)" link that filters the
+  shop. Rendered from the same `CRYSTALS` data the product pages use, so the two
+  never disagree; the shop's crystal filter now also finds stones inside sets.
+  Product pages gained the same benefits list and a link into the guide.
+* Linked from the Crystals menu, footer, mobile drawer, home "shop by
+  intention", the crystals category page and the FAQ.

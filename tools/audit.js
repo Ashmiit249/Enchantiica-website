@@ -23,7 +23,7 @@ const ROOT = process.env.ROOT || path.resolve(__dirname, '..');
 const BROWSER = process.env.BROWSER || 'chromium';
 let AXE = null;
 try { AXE = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8'); } catch (e) { console.warn('axe-core not installed — skipping accessibility rules'); }
-const PAGES = ['index.html','shop.html','crystals.html','jewellery.html','product.html?id=rose-quartz-pendant','product.html?id=amethyst-cluster','product.html?id=self-love-crystal-pack','product.html?id=nope','cart.html','about.html','contact.html','faq.html','shipping.html','returns.html','privacy.html'];
+const PAGES = ['index.html','shop.html','crystals.html','jewellery.html','product.html?id=rose-quartz-pendant','product.html?id=amethyst-cluster','product.html?id=self-love-crystal-pack','product.html?id=nope','cart.html','about.html','contact.html','faq.html','shipping.html','returns.html','privacy.html','crystal-meanings.html'];
 const VIEWPORTS = { mobile: { width: 375, height: 740 }, tablet: { width: 820, height: 1100 }, desktop: { width: 1366, height: 900 } };
 const SHOTS = process.env.SHOTS === '1';
 if (SHOTS) fs.mkdirSync(path.join(__dirname, 'shots'), { recursive: true });
@@ -220,6 +220,22 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   check(bsEyebrows.some(t => /Pendant|Bracelet|Earrings|Ring/.test(t)) && bsEyebrows.some(t => /Tumblestone|Set|Kit|Cluster|Wand|Heart$/.test(t)), 'bestsellers mix jewellery + crystals: ' + bsEyebrows.join(' / '));
 
   // page transition: click a link, expect navigation
+  // nav dropdown: hidden until hover, visible on hover and on keyboard focus
+  const menu = page.locator('#menu-crystals');
+  check(!(await menu.isVisible()), 'crystals menu hidden by default');
+  await page.hover('.nav__item:has(#menu-crystals) .nav__link');
+  await page.waitForTimeout(400);
+  check(await menu.isVisible(), 'crystals menu shows on hover');
+  check((await menu.locator('a').count()) === 6, 'crystals menu has 6 links');
+  await page.mouse.move(10, 600); await page.waitForTimeout(500);
+  check(!(await menu.isVisible()), 'crystals menu hides after hover leaves');
+  await page.focus('.nav__item:has(#menu-jewellery) .nav__link');
+  await page.waitForTimeout(400);
+  check(await page.locator('#menu-jewellery').isVisible(), 'jewellery menu shows on keyboard focus');
+  await page.keyboard.press('Tab');
+  check(await page.evaluate(() => document.activeElement.classList.contains('nav__menu-link')), 'tab moves into the menu');
+  await page.keyboard.press('Escape'); await page.waitForTimeout(400);
+  check(!(await page.locator('#menu-jewellery').isVisible()), 'escape closes the menu');
   step('newsletter done');
   await page.click('.nav__link[href="about.html"]');
   await page.waitForURL('**/about.html');
@@ -241,6 +257,10 @@ const products = (() => { global.window = {}; require(path.join(ROOT, 'js/produc
   const navBox = await mp.locator('.nav').boundingBox();
   check(navBox && navBox.height >= 700 && navBox.x + navBox.width <= 376, 'mobile nav drawer full height: ' + JSON.stringify(navBox));
   check((await mp.getAttribute('.burger', 'aria-expanded')) === 'true', 'burger aria-expanded');
+  const tgl = mp.locator('.nav__item:has(#menu-crystals) .nav__toggle');
+  check(await tgl.isVisible() && !(await mp.locator('#menu-crystals').isVisible()), 'drawer: sub-menu collapsed with a visible toggle');
+  await tgl.click(); await mp.waitForTimeout(200);
+  check(await mp.locator('#menu-crystals').isVisible() && (await tgl.getAttribute('aria-expanded')) === 'true', 'drawer: toggle expands sub-menu');
   await mp.keyboard.press('Escape');
   await mp.waitForTimeout(450);
   check(!(await mp.locator('.nav').isVisible()), 'esc closes nav');

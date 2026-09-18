@@ -70,14 +70,18 @@
           var s = E.CRYSTALS[c];
           return '<li><strong>' + E.escapeHTML(s.name) + '</strong><span>' + E.escapeHTML(s.meaning.split('. ')[0]) + '.</span></li>';
         }).join('') +
-        '</ul></div>' +
+        '</ul>' +
+        '<p style="margin-top: var(--space-4)"><a class="link-arrow" href="crystal-meanings.html">Read the full crystal guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>' +
         '<dl class="meaning__facts">' +
         '<div class="meaning__fact"><dt>How to use</dt><dd>' + E.escapeHTML(crystal.use) + '</dd></div>' +
         '<div class="meaning__fact"><dt>Care</dt><dd>Cleanse on selenite or in moonlight. Keep Selenite dry.</dd></div>' +
         '</dl>';
     } else {
       html += '<div><span class="eyebrow">Crystal meaning</span><h2 id="meaning-title">' + E.escapeHTML(crystal.name) + '</h2>' +
-        '<p>' + E.escapeHTML(crystal.meaning) + '</p><p>' + E.escapeHTML(crystal.use) + '</p></div>' +
+        '<p>' + E.escapeHTML(crystal.meaning) + '</p>' +
+        '<ul class="meaning__benefits">' + (crystal.benefits || []).map(function (b) { return '<li>' + E.escapeHTML(b) + '</li>'; }).join('') + '</ul>' +
+        '<p>' + E.escapeHTML(crystal.use) + '</p>' +
+        '<p><a class="link-arrow" href="crystal-meanings.html#' + E.escapeHTML(E.crystalFor(product, selectedVariant)) + '">Read the full crystal guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>' +
         '<dl class="meaning__facts">' +
         '<div class="meaning__fact"><dt>Colour</dt><dd>' + E.escapeHTML(crystal.colour) + '</dd></div>' +
         '<div class="meaning__fact"><dt>Chakra</dt><dd>' + E.escapeHTML(crystal.chakra) + '</dd></div>' +

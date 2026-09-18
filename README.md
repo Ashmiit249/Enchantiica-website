@@ -51,6 +51,7 @@ which falls back to system fonts if offline.
 ├── shipping.html       Delivery rates, processing times, tracking, customs
 ├── returns.html        Returns policy and how to return
 ├── privacy.html        Privacy policy, cookies and terms (#privacy, #cookies, #terms)
+├── crystal-meanings.html  Crystal guide — meaning, benefits, use and pairing for every stone (#rose-quartz, #amethyst …)
 ├── favicon.svg
 ├── css/
 │   └── styles.css      Single stylesheet — design tokens at the top, sections numbered 1–16
@@ -167,8 +168,15 @@ the `href`.
   `jewellery`), `sub` (one of the keys in `CATEGORIES`), `crystal` (a key in
   `CRYSTALS`), `helps` (keys in `INTENTIONS`), a `price`, and optionally
   `variants` + a `prices` map for per-variant pricing.
-* **Crystal meanings** shown on product pages — the `CRYSTALS` object in the
-  same file.
+* **Crystal meanings and benefits** — the `CRYSTALS` object in the same file
+  (`meaning`, `benefits`, `use`, `colour`, `chakra`). Product pages read it
+  live. `crystal-meanings.html` is a static copy of the same data rendered when
+  the site was generated, so if you change a meaning, update that page too (or
+  ask for it to be regenerated).
+* **Navigation menus** — the Shop, Crystals and Jewellery dropdowns are plain
+  markup repeated in each page's header (`.nav__item` → `.nav__menu`). Add or
+  rename a link there; the same block appears in the mobile drawer as an
+  accordion.
 * **Choose-your-stone products** (Raw Stone Chunk, Crystal Tree, Crystal
   Pyramid, Crystal Tower) — give the product a `variantCrystals` map from each
   variant option to a crystal id. The product page's meaning block, eyebrow

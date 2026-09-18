@@ -66,6 +66,7 @@
 
   function hasCrystal(p, id) {
     if (p.crystal === id) return true;
+    if (p.contents && p.contents.indexOf(id) !== -1) return true;
     if (!p.variantCrystals) return false;
     return Object.keys(p.variantCrystals).some(function (k) { return p.variantCrystals[k] === id; });
   }
@@ -120,6 +121,7 @@
     var crystalsUsed = {};
     pool.forEach(function (p) {
       crystalsUsed[p.crystal] = true;
+      if (p.contents) p.contents.forEach(function (c) { crystalsUsed[c] = true; });
       if (p.variantCrystals) Object.keys(p.variantCrystals).forEach(function (k) { crystalsUsed[p.variantCrystals[k]] = true; });
     });
     Object.keys(E.CRYSTALS).forEach(function (c) {

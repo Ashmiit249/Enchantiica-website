@@ -107,11 +107,33 @@
     });
   }
 
-  /* Mark current page in nav */
+  /* Mark current page in nav (a parent link is current when one of its menu links matches) */
   var current = location.pathname.split('/').pop() || 'index.html';
   doc.querySelectorAll('.nav__link').forEach(function (link) {
     var href = link.getAttribute('href').split('?')[0].split('#')[0];
-    if (href === current) link.setAttribute('aria-current', 'page');
+    if (href === current) { link.setAttribute('aria-current', 'page'); return; }
+    var item = link.closest('.nav__item');
+    if (item && current !== 'index.html' && Array.prototype.some.call(item.querySelectorAll('.nav__menu a'), function (a) {
+      return a.getAttribute('href').split('?')[0].split('#')[0] === current;
+    })) link.setAttribute('aria-current', 'page');
+  });
+
+  /* Sub-menus: hover / focus on desktop (CSS), accordion toggles in the drawer */
+  doc.querySelectorAll('.nav__toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.nav__item');
+      var open = !item.classList.contains('is-open');
+      doc.querySelectorAll('.nav__item.is-open').forEach(function (other) {
+        if (other !== item) { other.classList.remove('is-open'); other.querySelector('.nav__toggle').setAttribute('aria-expanded', 'false'); }
+      });
+      item.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  doc.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var item = doc.activeElement && doc.activeElement.closest && doc.activeElement.closest('.nav__item');
+    if (item) { item.querySelector('.nav__link').focus(); if (item.classList.contains('is-open')) item.querySelector('.nav__toggle').click(); }
   });
 
   /* ---------------------------------------------------------------------- */

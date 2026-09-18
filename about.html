@@ -27,14 +27,63 @@
 
       <nav class="nav" id="site-nav" aria-label="Main navigation">
         <ul class="nav__list">
-          <li><a class="nav__link" href="index.html">Home</a></li>
-          <li><a class="nav__link" href="shop.html">Shop</a></li>
-          <li><a class="nav__link" href="crystals.html">Crystals</a></li>
-          <li><a class="nav__link" href="jewellery.html">Jewellery</a></li>
-          <li><a class="nav__link" href="about.html">About</a></li>
-          <li><a class="nav__link" href="contact.html">Contact</a></li>
+          <li class="nav__item"><a class="nav__link" href="index.html">Home</a></li>
+          <li class="nav__item">
+            <a class="nav__link" href="shop.html">Shop</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-shop" aria-label="Shop menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="nav__menu" id="menu-shop">
+              <div class="nav__panel nav__panel--wide">
+                <ul>
+                  <li><span class="nav__group-title">Browse</span></li>
+                  <li><a class="nav__menu-link nav__menu-link--all" href="shop.html">All products</a></li>
+                  <li><a class="nav__menu-link" href="shop.html?sort=rating">Bestsellers</a></li>
+                  <li><a class="nav__menu-link" href="crystals.html">Crystals</a></li>
+                  <li><a class="nav__menu-link" href="jewellery.html">Jewellery</a></li>
+                  <li><a class="nav__menu-link" href="crystals.html?sub=packs">Crystal packs</a></li>
+                </ul>
+                <ul>
+                  <li><span class="nav__group-title">Shop by intention</span></li>
+                  <li><a class="nav__menu-link" href="shop.html?good=love">Love &amp; self-love</a></li>
+                  <li><a class="nav__menu-link" href="shop.html?good=calm,sleep">Calm &amp; sleep</a></li>
+                  <li><a class="nav__menu-link" href="shop.html?good=protection,grounding">Protection &amp; grounding</a></li>
+                  <li><a class="nav__menu-link" href="shop.html?good=abundance,confidence">Abundance &amp; confidence</a></li>
+                  <li><a class="nav__menu-link" href="shop.html?good=clarity,energy">Clarity &amp; energy</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="crystals.html">Crystals</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-crystals" aria-label="Crystals menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="nav__menu" id="menu-crystals">
+              <ul class="nav__panel">
+                <li><a class="nav__menu-link nav__menu-link--all" href="crystals.html">All crystals</a></li>
+                <li><a class="nav__menu-link" href="crystals.html?sub=tumblestones">Tumblestones</a></li>
+                <li><a class="nav__menu-link" href="crystals.html?sub=rough">Rough crystals &amp; raw chunks</a></li>
+                <li><a class="nav__menu-link" href="crystals.html?sub=packs">Crystal packs</a></li>
+                <li><a class="nav__menu-link" href="crystals.html?sub=shapes">Towers, pyramids, trees &amp; shapes</a></li>
+                <li><a class="nav__menu-link nav__menu-link--guide" href="crystal-meanings.html">Crystal meanings &amp; benefits</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="jewellery.html">Jewellery</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-jewellery" aria-label="Jewellery menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="nav__menu" id="menu-jewellery">
+              <ul class="nav__panel">
+                <li><a class="nav__menu-link nav__menu-link--all" href="jewellery.html">All jewellery</a></li>
+                <li><a class="nav__menu-link" href="jewellery.html?sub=necklaces">Necklaces &amp; pendants</a></li>
+                <li><a class="nav__menu-link" href="jewellery.html?sub=bracelets">Bracelets</a></li>
+                <li><a class="nav__menu-link" href="jewellery.html?sub=earrings">Earrings</a></li>
+                <li><a class="nav__menu-link" href="jewellery.html?sub=rings">Rings</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+          <li class="nav__item"><a class="nav__link" href="contact.html">Contact</a></li>
         </ul>
         <div class="nav__secondary">
+          <a href="crystal-meanings.html">Crystal meanings</a>
           <a href="faq.html">FAQ</a>
           <a href="shipping.html">Delivery</a>
           <a href="returns.html">Returns</a>
@@ -174,6 +223,7 @@
             <li><a href="jewellery.html">Jewellery</a></li>
             <li><a href="crystals.html?sub=packs">Crystal packs</a></li>
             <li><a href="shop.html?sort=rating">Bestsellers</a></li>
+            <li><a href="crystal-meanings.html">Crystal meanings</a></li>
           </ul>
         </div>
         <div>
