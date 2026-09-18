@@ -82,42 +82,47 @@
   function buildFilters() {
     var html = '';
 
+    function open(title) {
+      var id = 'fg-' + title.toLowerCase().replace(/[^a-z]+/g, '-');
+      return '<div class="filters__group" role="group" aria-labelledby="' + id + '"><h3 class="filters__title" id="' + id + '">' + title + '</h3>';
+    }
+
     if (!lockedCategory) {
-      html += '<fieldset class="filters__group"><legend class="filters__title">Category</legend>';
+      html += open('Category');
       Object.keys(E.CATEGORIES).forEach(function (c) {
         html += checkboxHTML('category', c, E.CATEGORIES[c].label, countBy('category', c));
       });
-      html += '</fieldset>';
+      html += '</div>';
     }
 
-    html += '<fieldset class="filters__group"><legend class="filters__title">Type</legend>';
+    html += open('Type');
     Object.keys(E.CATEGORIES).forEach(function (c) {
       if (lockedCategory && c !== lockedCategory) return;
       Object.keys(E.CATEGORIES[c].subs).forEach(function (s) {
         html += checkboxHTML('sub', s, E.CATEGORIES[c].subs[s], countBy('sub', s));
       });
     });
-    html += '</fieldset>';
+    html += '</div>';
 
-    html += '<fieldset class="filters__group"><legend class="filters__title">Price</legend>';
+    html += open('Price');
     PRICE_BANDS.forEach(function (b) { html += checkboxHTML('price', b.id, b.label, null); });
-    html += '</fieldset>';
+    html += '</div>';
 
-    html += '<fieldset class="filters__group"><legend class="filters__title">Crystal</legend>';
+    html += open('Crystal');
     var crystalsUsed = {};
     pool.forEach(function (p) { crystalsUsed[p.crystal] = true; });
     Object.keys(E.CRYSTALS).forEach(function (c) {
       if (!crystalsUsed[c]) return;
       html += checkboxHTML('crystal', c, E.CRYSTALS[c].name, countBy('crystal', c));
     });
-    html += '</fieldset>';
+    html += '</div>';
 
-    html += '<fieldset class="filters__group"><legend class="filters__title">Good for</legend>';
+    html += open('Good for');
     Object.keys(E.INTENTIONS).forEach(function (i) {
       var n = countBy('good', i);
       if (n) html += checkboxHTML('good', i, E.INTENTIONS[i], n);
     });
-    html += '</fieldset>';
+    html += '</div>';
 
     filtersEl.querySelector('[data-filter-groups]').innerHTML = html;
   }

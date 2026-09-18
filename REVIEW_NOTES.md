@@ -80,3 +80,63 @@ sandbox, not the site.
 across 15 URLs × 3 viewports; all scripted interactions pass.
 
 ---
+
+## Pass 2 — design polish, performance, accessibility, UX friction
+
+Reviewed as two separate critiques: a **design reviewer** (alignment,
+whitespace, hierarchy, "does it feel premium") and a **performance /
+accessibility reviewer** (page weight, wasted work, WCAG, keyboard flow).
+Contrast ratios were computed for every foreground/background pair in the
+palette rather than eyeballed.
+
+### Design polish
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 1 | Home bestsellers grid showed eight crystals and no jewellery — the first eight flagged products in catalogue order were all crystals. Weak first impression for a jewellery brand. | Bestsellers are now ordered by review count, giving a natural mix (pendant, bracelets, kit, tumblestone, sleep set, earrings…). |
+| 2 | Collection cards: titles sat at different heights because two captions wrapped to two lines and two didn't. | Captions reserve two lines so all four titles align. Overlay gradient lightened slightly (0.72 → 0.68) so it reads as warm ink, not grey. |
+| 3 | Filter sidebar group dividers were drawn as fieldset borders, which browsers interrupt at the legend — the line broke around each title. A `box-shadow` and a floated legend were both tried; each has its own legend quirks (the shadow still sits on the legend's midline; a floated legend let the first checkbox float up beside it). | Groups are now `<div role="group" aria-labelledby>` with an `<h3>` title — identical semantics for assistive tech, none of the legend rendering rules. |
+| 4 | Sticky header overlapped the top of the mobile **filter** drawer, hiding the close button behind the header (taps never reached it). | Filter drawer and its overlay now sit above the header (`z-index` 110/105); verified the close button is clickable at 375 px. |
+| 5 | Hover state missing on product-page "Helps with" tag links — they looked static. | Tag links get a hover state (deeper blush, ink text). |
+
+### Performance / efficiency
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 6 | Requested 8 web-font files, but Jost 300 and Cormorant italic 500 are never used. | Font request trimmed to the 6 weights/styles actually used (Cormorant 400/500/600 + italic 400, Jost 400/500). |
+| 7 | 10 CSS rule sets were defined but unused (`btn--ghost`, `btn--gold`, `section--ink`, `tag--gold`, `tag--outline`, `container--wide`, timeline styles). | Removed. `media--wide` kept because it is documented as an image-swap ratio. |
+| 8 | Price sorting recomputed each product's variant price range inside the comparator (O(n log n) lookups). | Minimum prices are computed once per page load. |
+| 9 | Page weight check: `styles.css` ≈ 12 KB gzipped, all JS ≈ 24 KB gzipped (of which the catalogue is 11 KB). No images, no third-party scripts, fonts with `display=swap`. Scroll handler is passive + rAF-throttled; reveal observer unobserves after firing; grids render with a single `innerHTML` write. | No change needed. |
+
+### Accessibility
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 10 | Form-control borders (`#D9CCC5`) were 1.6:1 against white — below the 3:1 non-text contrast minimum (WCAG 1.4.11). | New `--control` token (`#96877D`, 3.4:1) for input, select, textarea, checkbox, quantity stepper, variant and pill borders. Decorative card borders stay light. |
+| 11 | Placeholder text in inputs was 3.7:1. | Uses the muted text token (5.3:1). |
+| 12 | Cart list re-rendered on every change, dropping keyboard focus from the +/− button the user had just activated; the whole list was also an `aria-live` region, so every change re-announced everything. | Focus is restored to the equivalent control after each render; a dedicated visually-hidden live region announces concise messages ("Quantity of X is now 2"). |
+| 13 | Removing a filter chip deleted the focused element with no focus management. | Focus moves to the results count (which is itself live), so screen-reader users hear the new count. |
+| 14 | Mobile filter drawer did not trap Tab, so keyboard focus could wander behind the overlay. | Shared `trapFocus()` helper now used by both the nav drawer and the filter drawer. |
+| 15 | Quantity steppers and the active-filter chip row carried `aria-label` on plain `<div>`s (prohibited without a role). | Both are `role="group"`. |
+| 16 | Links that open Instagram in a new tab did not say so. | Visually-hidden "(opens in a new tab)" appended to every `target="_blank"` link. |
+| 17 | Tap targets under 24 px on mobile (WCAG 2.5.8): logo (22 px), breadcrumb links, "312 reviews" link, tag links, footer link lists (16 px), footer Instagram link and the drawer's secondary links (22 px). | Logo gets vertical padding; breadcrumb, rating, tag, footer and drawer links are inline-block with padding (≥ 26 px). Inline links inside sentences are exempt and unchanged. |
+
+### UX friction
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 18 | Bag page with items had no way back to shopping except the header. | "Continue shopping" link under the item list. |
+| 19 | Sub-category pill clicks on category pages did a full page reload. | Filter in place, URL and heading update, no reload. |
+| 20 | **Mobile visual sweep:** the home testimonials used the generic 3-column grid, which is 2 columns on phones — with card padding that left ~100 px for text, so quotes wrapped one word per line. (Missed by the automated sweep: nothing overflowed, it just looked broken.) | Testimonials have their own grid: one column under 720 px, three above. |
+
+### Verification
+
+Automated sweep re-run after all of the above: **0 issues** — no console errors,
+no overflow, 0 axe violations on every page, all links/anchors/product ids
+resolve, and all scripted interactions pass, including the new pass-2 checks
+(focus retained after cart re-render, live-region announcement, filter-drawer
+focus trap, chip removal focus, bestsellers mix of crystals and jewellery,
+24 px tap targets on mobile). Visual sweep of every page at mobile width at
+successive scroll offsets followed (see Pass 3 for anything it turned up).
+
+---
