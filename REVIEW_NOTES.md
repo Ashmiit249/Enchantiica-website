@@ -140,3 +140,45 @@ focus trap, chip removal focus, bestsellers mix of crystals and jewellery,
 successive scroll offsets followed (see Pass 3 for anything it turned up).
 
 ---
+
+## Pass 3 — mobile sweep, spacing rhythm, page weight
+
+**Scope:** every page captured at 375 px at successive scroll offsets (≈90
+viewport-sized screenshots) and read end to end; desktop spot checks of page
+heads and the footer; a fresh look at what each page loads.
+
+### Design reviewer
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 1 | Pages with a page-head banner (shop, categories, bag, help pages) stacked the banner's bottom padding on top of the following section's top padding — a ~7.5 rem gap between the title and the content on desktop. | `.page-head + .section` uses a reduced top padding, so the rhythm matches the rest of the site. |
+| 2 | FAQ groups were spaced as legal-policy sections (extra border plus two lots of 4 rem padding), which read as a double divider and a large empty gap on phones. | FAQ groups use their own spacing and keep an anchor scroll margin for the pill navigation. |
+| 3 | Footer on phones stacked four columns vertically — two full screens of links before the copyright line. | Link lists sit in two columns from phone width (brand block spans the row), three columns on tablet, four on desktop. |
+
+### Performance reviewer
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 4 | The 45 KB catalogue (`products.js`) was loaded on About, Contact, FAQ, Shipping, Returns and Privacy, where nothing reads it. | Only pages with product grids, the product page and the bag load it. The other pages load `cart.js` + `main.js` only (badge, nav, forms). |
+| 5 | Re-checked: no layout thrash on scroll (single passive listener, rAF-throttled class toggle), no timers, no polling; `cart:change` is the only cross-module event; product grids render in one write; fonts use `display=swap` with preconnect. | No change needed. |
+
+### Accessibility / UX reviewer
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 6 | Added an HTML validator (`html-validate`, recommended ruleset) to the toolkit. It found: unescaped `&` in several `<title>`s and one link label; `<th>` cells without `scope`; the announcement bar as a `div[role=region]` where a native element exists. | Titles are escaped by the page assembler; `&amp;` in the link; `scope="col"` on every table header; announcement bar is a `<section aria-label>`. All 12 pages now validate clean, with one deliberate exception below. |
+| 7 | The validator prefers a native `<progress>` for the free-delivery bar. | Kept the ARIA `role="progressbar"` `div`: styling `<progress>` consistently needs `::-webkit-progress-*` / `::-moz-progress-bar` vendor pseudo-elements, which this project avoids. The ARIA version exposes the same value/min/max to assistive tech. |
+
+Otherwise nothing new: the pass-2 fixes held up across the mobile sweep. Checked
+specifically: FAQ pill navigation lands with the group heading clear of the
+sticky header; empty-bag state offers two clear next steps; review form on
+the product page is fully labelled; every "opens in a new tab" link says so.
+
+### Verification
+
+Automated sweep re-run: **0 issues** (15 URLs × 3 viewports, axe clean,
+links/anchors clean, all interactions pass). HTML validation: clean apart from
+the documented `<progress>` preference. Visual re-check of the footer (phone),
+FAQ (phone) and shop/FAQ page heads (desktop) confirmed the spacing changes.
+
+---
