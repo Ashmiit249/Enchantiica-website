@@ -276,3 +276,5 @@ like "2I0" in Cormorant's old-style figures.
   phones the message wrapped one word per line. It is now centred with
   `left/right: 0; margin-inline: auto; width: fit-content`.
 * Automated sweep re-run after the changes: see the line below.
+
+**Verification:** automated sweep after these changes: 0 issues across all pages, viewports and interactions (48 products, filters and bestsellers checks are dynamic); HTML validation unchanged.
