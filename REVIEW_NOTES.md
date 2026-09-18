@@ -252,3 +252,9 @@ localised end to end:
 
 Automated sweep, HTML validation and the audit's price assertions were
 updated for AED and re-run: see the verification line below.
+**Verification after localisation:** automated sweep 0 issues (price and
+delivery assertions now check for AED and "free UAE delivery"), HTML
+validation unchanged, no remaining sterling or UK references in the site
+files (the UK column in the ring-size conversion table is intentional).
+Prices and review scores now use lining numerals so "AED 210" no longer reads
+like "2I0" in Cormorant's old-style figures.
