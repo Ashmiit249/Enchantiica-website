@@ -906,7 +906,9 @@ h4, .h4 { font-size: var(--fs-md); line-height: 1.3; }
 }
 .search__result:hover, .search__result:focus-visible { background: var(--blush-50); outline-offset: -2px; }
 .search__thumb { width: 52px; flex-shrink: 0; }
-.search__thumb .ph__name, .search__thumb .ph__tag, .search__thumb .ph__icon { display: none; }
+.search__thumb .ph__name, .search__thumb .ph__tag { display: none; }
+.search__thumb .ph__icon { width: 16px; height: 16px; margin: 0; }
+.search__thumb .ph::after { inset: 4px; }
 .search__body { display: grid; gap: 2px; min-width: 0; flex: 1; }
 .search__name { font-family: var(--font-heading); font-size: var(--fs-md); line-height: 1.2; color: var(--text); }
 .search__meta { font-size: var(--fs-xs); color: var(--text-3); }
