@@ -64,9 +64,17 @@
   var minPrice = {};
   pool.forEach(function (p) { minPrice[p.id] = E.priceRange(p).min; });
 
+  function hasCrystal(p, id) {
+    if (p.crystal === id) return true;
+    if (!p.variantCrystals) return false;
+    return Object.keys(p.variantCrystals).some(function (k) { return p.variantCrystals[k] === id; });
+  }
+
   function countBy(key, value) {
     return pool.filter(function (p) {
-      return key === 'good' ? p.helps.indexOf(value) !== -1 : p[key] === value;
+      if (key === 'good') return p.helps.indexOf(value) !== -1;
+      if (key === 'crystal') return hasCrystal(p, value);
+      return p[key] === value;
     }).length;
   }
 
@@ -110,7 +118,10 @@
 
     html += open('Crystal');
     var crystalsUsed = {};
-    pool.forEach(function (p) { crystalsUsed[p.crystal] = true; });
+    pool.forEach(function (p) {
+      crystalsUsed[p.crystal] = true;
+      if (p.variantCrystals) Object.keys(p.variantCrystals).forEach(function (k) { crystalsUsed[p.variantCrystals[k]] = true; });
+    });
     Object.keys(E.CRYSTALS).forEach(function (c) {
       if (!crystalsUsed[c]) return;
       html += checkboxHTML('crystal', c, E.CRYSTALS[c].name, countBy('crystal', c));
@@ -168,7 +179,7 @@
     var list = pool.filter(function (p) {
       if (state.category.length && state.category.indexOf(p.category) === -1) return false;
       if (state.sub.length && state.sub.indexOf(p.sub) === -1) return false;
-      if (state.crystal.length && state.crystal.indexOf(p.crystal) === -1) return false;
+      if (state.crystal.length && !state.crystal.some(function (c) { return hasCrystal(p, c); })) return false;
       if (state.good.length && !state.good.some(function (g) { return p.helps.indexOf(g) !== -1; })) return false;
       return matchesPrice(p);
     });

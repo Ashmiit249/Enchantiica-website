@@ -28,8 +28,8 @@
   }
 
   var cat = E.CATEGORIES[product.category];
-  var crystal = E.CRYSTALS[product.crystal];
   var selectedVariant = product.variants ? product.variants.options[0] : '';
+  var crystal = E.CRYSTALS[E.crystalFor(product, selectedVariant)];
   var qty = 1;
 
   document.title = product.name + ' — Enchantiica';
@@ -176,7 +176,7 @@
 
       '<div class="product__info">' +
         '<div>' +
-          '<span class="eyebrow">' + E.escapeHTML(crystal.name) + (product.bestseller ? ' · Bestseller' : '') + '</span>' +
+          '<span class="eyebrow" data-crystal-eyebrow>' + E.escapeHTML(crystal.name) + (product.bestseller ? ' · Bestseller' : '') + '</span>' +
           '<h1 class="product__title">' + E.escapeHTML(product.name) + '</h1>' +
           '<div class="product__rating">' + E.starsHTML(product.rating) + '<a href="#reviews">' + product.reviewCount + ' reviews</a></div>' +
         '</div>' +
@@ -207,7 +207,7 @@
       '</div>' +
     '</div>' +
 
-    '<div class="section section--tight">' + meaningHTML() + '</div>' +
+    '<div class="section section--tight" data-meaning>' + meaningHTML() + '</div>' +
     relatedHTML() +
     reviewsHTML();
 
@@ -226,6 +226,14 @@
     var nameEl = app.querySelector('[data-variant-name]');
     if (nameEl) nameEl.textContent = v;
     priceEl.textContent = E.formatPrice(E.priceFor(product, v));
+    /* Choose-your-stone products: the meaning block and eyebrow follow the stone */
+    if (product.variantCrystals) {
+      crystal = E.CRYSTALS[E.crystalFor(product, v)];
+      var meaningEl = app.querySelector('[data-meaning]');
+      if (meaningEl) meaningEl.innerHTML = meaningHTML();
+      var eyebrow = app.querySelector('[data-crystal-eyebrow]');
+      if (eyebrow) eyebrow.textContent = crystal.name + (product.bestseller ? ' · Bestseller' : '');
+    }
   }
 
   app.addEventListener('click', function (e) {

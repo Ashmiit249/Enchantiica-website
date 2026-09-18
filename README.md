@@ -169,6 +169,14 @@ the `href`.
   `variants` + a `prices` map for per-variant pricing.
 * **Crystal meanings** shown on product pages — the `CRYSTALS` object in the
   same file.
+* **Choose-your-stone products** (Raw Stone Chunk, Crystal Tree, Crystal
+  Pyramid, Crystal Tower) — give the product a `variantCrystals` map from each
+  variant option to a crystal id. The product page's meaning block, eyebrow
+  and the shop's crystal filter then follow the chosen stone.
+* **WhatsApp number** — appears in the floating button, footer, mobile menu and
+  contact page. It is written into each HTML file as a `wa.me` link
+  (`https://wa.me/971555863001`) plus the display text `+971 55 586 3001`;
+  a project-wide find-and-replace on both strings changes it everywhere.
 * **Free-delivery threshold, delivery cost, promo codes** — top of `js/cart.js`
   (AED 250 threshold, AED 20 standard). The delivery table, cash-on-delivery
   fee and timings on `shipping.html` / `faq.html` are plain text — keep them

@@ -166,7 +166,7 @@
       name: 'Mixed Crystals',
       colour: 'Various',
       chakra: 'Various',
-      meaning: 'A curated combination of stones chosen to work together towards a single intention.',
+      meaning: 'A curated combination of stones chosen to work together — for the Seven Chakra pieces, one stone for each energy centre, from grounding red jasper at the root to clear quartz at the crown.',
       use: 'Keep the set together in its pouch or arrange the stones somewhere you will see them every day.'
     }
   };
@@ -309,6 +309,17 @@
       image: ''
     },
     {
+      id: 'raw-stone-chunk', name: 'Raw Stone Chunk',
+      category: 'crystals', sub: 'rough', crystal: 'mixed',
+      price: 55, helps: ['energy', 'clarity', 'grounding'], bestseller: false, rating: 4.8, reviewCount: 41,
+      short: 'Unpolished, natural pieces — choose the stone that calls to you.',
+      long: 'A raw, unpolished chunk of your chosen crystal, roughly 4–6 cm, straight from the earth with its natural edges and character intact. Raw pieces are believed to hold a purer, gentler energy than polished stones and make a lovely focal point on a shelf, desk or altar. Every chunk is unique in shape, colour and size.',
+      variants: { label: 'Stone', options: ['Amethyst', 'Clear Quartz', 'Citrine', 'Green Aventurine', 'Tiger’s Eye'] },
+      prices: { 'Amethyst': 55, 'Clear Quartz': 45, 'Citrine': 65, 'Green Aventurine': 45, 'Tiger’s Eye': 50 },
+      variantCrystals: { 'Amethyst': 'amethyst', 'Clear Quartz': 'clear-quartz', 'Citrine': 'citrine', 'Green Aventurine': 'green-aventurine', 'Tiger’s Eye': 'tigers-eye' },
+      image: ''
+    },
+    {
       id: 'black-tourmaline-rough', name: 'Raw Black Tourmaline',
       category: 'crystals', sub: 'rough', crystal: 'black-tourmaline',
       price: 35, helps: ['protection', 'grounding'], bestseller: false, rating: 4.8, reviewCount: 92,
@@ -433,6 +444,49 @@
       long: 'A polished Black Obsidian tower with a glossy, glass-like finish. Around 8 cm tall. A striking piece for an entryway or desk, and a favourite for anyone drawn to darker, more grounding stones.',
       variants: { label: 'Height', options: ['Small (6 cm)', 'Medium (8 cm)', 'Large (11 cm)'] },
       prices: { 'Small (6 cm)': 75, 'Medium (8 cm)': 100, 'Large (11 cm)': 155 },
+      image: ''
+    },
+    {
+      id: 'crystal-tree', name: 'Crystal Tree',
+      category: 'crystals', sub: 'shapes', crystal: 'mixed',
+      price: 130, helps: ['abundance', 'calm', 'grounding'], bestseller: true, rating: 4.9, reviewCount: 118,
+      short: 'A hand-wired gemstone tree to bring growth and calm to any corner.',
+      long: 'Around a hundred polished crystal chips hand-wired onto copper branches and rooted in a natural stone base, roughly 15 cm tall. Crystal trees are a traditional symbol of growth, grounding and abundance — a beautiful piece for a desk, hallway table or bedside. Choose Amethyst for calm, Rose Quartz for love, Citrine for abundance or the Seven Chakra mix for balance.',
+      variants: { label: 'Stone', options: ['Amethyst', 'Rose Quartz', 'Citrine', 'Seven Chakra'] },
+      prices: { 'Amethyst': 130, 'Rose Quartz': 130, 'Citrine': 140, 'Seven Chakra': 150 },
+      variantCrystals: { 'Amethyst': 'amethyst', 'Rose Quartz': 'rose-quartz', 'Citrine': 'citrine', 'Seven Chakra': 'mixed' },
+      image: ''
+    },
+    {
+      id: 'selenite-charging-disc', name: 'Selenite Charging Disc',
+      category: 'crystals', sub: 'shapes', crystal: 'selenite',
+      price: 45, helps: ['cleansing', 'clarity', 'calm'], bestseller: true, rating: 4.9, reviewCount: 132,
+      short: 'A polished selenite plate to cleanse and recharge crystals and jewellery.',
+      long: 'A round, polished Selenite disc with a soft, pearly glow. Lay your jewellery, tumblestones or bracelets on it overnight and they’ll be cleansed and recharged by morning — no water, no salt, no fuss. Selenite is soft and water-soluble, so keep it dry and wipe it with a soft cloth. Available in three sizes.',
+      variants: { label: 'Diameter', options: ['8 cm', '10 cm', '12 cm'] },
+      prices: { '8 cm': 45, '10 cm': 60, '12 cm': 80 },
+      image: ''
+    },
+    {
+      id: 'crystal-pyramid', name: 'Crystal Pyramid',
+      category: 'crystals', sub: 'shapes', crystal: 'mixed',
+      price: 95, helps: ['clarity', 'protection', 'energy'], bestseller: false, rating: 4.8, reviewCount: 64,
+      short: 'A polished pyramid to focus intention and anchor a space.',
+      long: 'A hand-polished four-sided pyramid, around 4 cm at the base, in your choice of stone. Pyramids are traditionally used to focus and amplify energy through their point, which makes them a favourite for desks, meditation corners and the centre of a crystal grid. Choose Amethyst for calm, Rose Quartz for love, Clear Quartz for clarity or Black Obsidian for protection.',
+      variants: { label: 'Stone', options: ['Amethyst', 'Rose Quartz', 'Clear Quartz', 'Black Obsidian'] },
+      prices: { 'Amethyst': 95, 'Rose Quartz': 95, 'Clear Quartz': 110, 'Black Obsidian': 105 },
+      variantCrystals: { 'Amethyst': 'amethyst', 'Rose Quartz': 'rose-quartz', 'Clear Quartz': 'clear-quartz', 'Black Obsidian': 'obsidian' },
+      image: ''
+    },
+    {
+      id: 'crystal-tower', name: 'Crystal Tower',
+      category: 'crystals', sub: 'shapes', crystal: 'mixed',
+      price: 110, helps: ['energy', 'clarity', 'love'], bestseller: false, rating: 4.8, reviewCount: 87,
+      short: 'A polished six-sided tower in your choice of stone.',
+      long: 'A six-sided polished tower, roughly 8–10 cm tall, cut to a clean point. Towers are said to direct energy upwards and outwards, making them a natural centrepiece for a shelf, a bedside table or a crystal grid. Choose Rose Quartz for love, Clear Quartz for clarity, Citrine for abundance or Selenite for cleansing the space around it.',
+      variants: { label: 'Stone', options: ['Rose Quartz', 'Clear Quartz', 'Citrine', 'Selenite'] },
+      prices: { 'Rose Quartz': 110, 'Clear Quartz': 120, 'Citrine': 130, 'Selenite': 90 },
+      variantCrystals: { 'Rose Quartz': 'rose-quartz', 'Clear Quartz': 'clear-quartz', 'Citrine': 'citrine', 'Selenite': 'selenite' },
       image: ''
     },
     {
@@ -685,6 +739,12 @@ var whole = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED',
     return INTENTIONS[id] || id;
   }
 
+  /* Crystal id for a product, honouring a chosen variant on choose-your-stone products */
+  function crystalFor(product, variant) {
+    if (product.variantCrystals && variant && product.variantCrystals[variant]) return product.variantCrystals[variant];
+    return product.crystal;
+  }
+
   /* Deterministic review selection so every product page is stable */
   function reviewsFor(product) {
     var hash = 0;
@@ -747,7 +807,7 @@ var whole = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED',
         (p.bestseller ? '<span class="card__badge">Bestseller</span>' : '') +
       '</a>' +
       '<div class="card__body">' +
-        '<p class="card__eyebrow">' + escapeHTML(crystalName(p.crystal)) + '</p>' +
+        '<p class="card__eyebrow">' + (p.variantCrystals ? 'Choose your stone' : escapeHTML(crystalName(p.crystal))) + '</p>' +
         '<h3 class="card__title"><a href="product.html?id=' + p.id + '">' + escapeHTML(p.name) + '</a></h3>' +
         '<div class="card__tags">' + tags + '</div>' +
         '<div class="card__footer">' +
@@ -769,6 +829,7 @@ var whole = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED',
     priceFor: priceFor,
     priceRange: priceRange,
     crystalName: crystalName,
+    crystalFor: crystalFor,
     intentionLabel: intentionLabel,
     reviewsFor: reviewsFor,
     mediaHTML: mediaHTML,
