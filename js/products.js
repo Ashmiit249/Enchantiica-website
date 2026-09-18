@@ -762,6 +762,57 @@ var whole = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED',
     return product.crystal;
   }
 
+  /* Search ----------------------------------------------------------------
+     Tokenised match over name, crystal(s), category, type, intentions and the
+     short description. Every token must match; results are ranked so that
+     name matches come first, then crystal / type matches, then everything else. */
+  var searchIndex = null;
+  function buildSearchIndex() {
+    searchIndex = products.map(function (p) {
+      var crystals = [p.crystal].concat(p.contents || [], p.variantCrystals ? Object.keys(p.variantCrystals).map(function (k) { return p.variantCrystals[k]; }) : []);
+      var cat = CATEGORIES[p.category];
+      return {
+        product: p,
+        name: p.name.toLowerCase(),
+        strong: (crystals.map(crystalName).join(' ') + ' ' + cat.label + ' ' + cat.subs[p.sub] + ' ' + (p.variants ? p.variants.options.join(' ') : '')).toLowerCase(),
+        weak: (p.helps.map(intentionLabel).join(' ') + ' ' + p.short).toLowerCase()
+      };
+    });
+  }
+  function normalise(q) {
+    return String(q || '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/).filter(Boolean);
+  }
+  function searchProducts(query) {
+    var tokens = normalise(query);
+    if (!tokens.length) return [];
+    if (!searchIndex) buildSearchIndex();
+    var out = [];
+    searchIndex.forEach(function (entry) {
+      var score = 0;
+      for (var i = 0; i < tokens.length; i++) {
+        var t = tokens[i];
+        if (entry.name.replace(/[’']/g, '').indexOf(t) !== -1) score += 3;
+        else if (entry.strong.replace(/[’']/g, '').indexOf(t) !== -1) score += 2;
+        else if (entry.weak.indexOf(t) !== -1) score += 1;
+        else return; /* every token must match somewhere */
+      }
+      if (entry.product.bestseller) score += 0.5;
+      out.push({ product: entry.product, score: score });
+    });
+    out.sort(function (a, b) { return b.score - a.score || b.product.reviewCount - a.product.reviewCount; });
+    return out.map(function (r) { return r.product; });
+  }
+  /* Crystals whose name matches the query — for "read about" suggestions */
+  function searchCrystals(query) {
+    var tokens = normalise(query);
+    if (!tokens.length) return [];
+    return Object.keys(CRYSTALS).filter(function (id) {
+      if (id === 'mixed') return false;
+      var name = CRYSTALS[id].name.toLowerCase().replace(/[’']/g, '');
+      return tokens.every(function (t) { return name.indexOf(t) !== -1; });
+    });
+  }
+
   /* Deterministic review selection so every product page is stable */
   function reviewsFor(product) {
     var hash = 0;
@@ -848,6 +899,8 @@ var whole = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED',
     crystalName: crystalName,
     crystalFor: crystalFor,
     intentionLabel: intentionLabel,
+    searchProducts: searchProducts,
+    searchCrystals: searchCrystals,
     reviewsFor: reviewsFor,
     mediaHTML: mediaHTML,
     starsHTML: starsHTML,

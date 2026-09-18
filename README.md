@@ -59,6 +59,7 @@ which falls back to system fonts if offline.
 │   ├── products.js     ★ Product catalogue, crystal meanings, intentions, shared render helpers
 │   ├── cart.js         localStorage cart store (window.Cart) — emits "cart:change"
 │   ├── main.js         Header, mobile nav, page transitions, scroll reveal, toast, forms, bestsellers
+│   ├── search.js       Header search panel — instant suggestions, submits to shop.html?q=…
 │   ├── shop.js         Filtering / sorting / URL sync for shop and category pages
 │   ├── product.js      Product page renderer (gallery, variants, meaning, related, reviews)
 │   └── cart-page.js    Bag page renderer
@@ -68,8 +69,10 @@ which falls back to system fonts if offline.
 └── REVIEW_NOTES.md     Running log of the review-and-improve passes
 ```
 
-Every page loads `products.js`, `cart.js` and `main.js`. Shop/category pages add
-`shop.js`; the product page adds `product.js`; the bag adds `cart-page.js`.
+Every page loads `cart.js`, `main.js` and `search.js`. Pages that show products
+also load `products.js` (the catalogue); on the other pages the search panel
+loads it on demand the first time it opens. Shop/category pages add `shop.js`;
+the product page adds `product.js`; the bag adds `cart-page.js`.
 All scripts are `defer`red and the site is readable without JavaScript
 (product grids, the product page and the bag need it, and say so).
 
@@ -173,6 +176,11 @@ the `href`.
   live. `crystal-meanings.html` is a static copy of the same data rendered when
   the site was generated, so if you change a meaning, update that page too (or
   ask for it to be regenerated).
+* **Search** — matching lives in `searchProducts()` in `js/products.js`
+  (name, stones, category, type, intentions and short description; every word
+  typed must match). The header panel (`js/search.js`) and the shop page's
+  `?q=` / sidebar box both use it, so results are identical. Press `/` anywhere
+  to open search.
 * **Navigation menus** — the Shop, Crystals and Jewellery dropdowns are plain
   markup repeated in each page's header (`.nav__item` → `.nav__menu`). Add or
   rename a link there; the same block appears in the mobile drawer as an

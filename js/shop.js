@@ -31,7 +31,8 @@
     { id: 'over-200', label: 'Over AED 200', min: 200.01, max: Infinity }
   ];
 
-  var state = { category: [], sub: [], crystal: [], good: [], price: [], sort: 'featured' };
+  var state = { category: [], sub: [], crystal: [], good: [], price: [], sort: 'featured', q: '' };
+  var searchInput = app.querySelector('[data-search-filter]');
 
   /* ---------------------------------------------------------------------- */
   /* URL <-> state                                                           */
@@ -44,6 +45,7 @@
     });
     if (lockedCategory) state.category = [lockedCategory];
     state.sort = params.get('sort') || 'featured';
+    state.q = (params.get('q') || '').trim();
   }
 
   function writeURL() {
@@ -53,6 +55,7 @@
       if (state[k].length) params.set(k, state[k].join(','));
     });
     if (state.sort !== 'featured') params.set('sort', state.sort);
+    if (state.q) params.set('q', state.q);
     var qs = params.toString();
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
   }
@@ -155,6 +158,7 @@
       cb.checked = state[cb.getAttribute('data-filter')].indexOf(cb.value) !== -1;
     });
     if (sortEl) sortEl.value = state.sort;
+    if (searchInput && searchInput.value.trim() !== state.q) searchInput.value = state.q;
     if (subnavEl) {
       var activeSub = state.sub.length === 1 ? state.sub[0] : '';
       subnavEl.querySelectorAll('[data-sub]').forEach(function (pill) {
@@ -178,7 +182,11 @@
   }
 
   function apply() {
+    var searchHits = state.q ? E.searchProducts(state.q) : null;
+    var rank = {};
+    if (searchHits) searchHits.forEach(function (p, i) { rank[p.id] = i; });
     var list = pool.filter(function (p) {
+      if (searchHits && rank[p.id] == null) return false;
       if (state.category.length && state.category.indexOf(p.category) === -1) return false;
       if (state.sub.length && state.sub.indexOf(p.sub) === -1) return false;
       if (state.crystal.length && !state.crystal.some(function (c) { return hasCrystal(p, c); })) return false;
@@ -193,20 +201,21 @@
       rating: function (a, b) { return (b.rating - a.rating) || (b.reviewCount - a.reviewCount); },
       name: function (a, b) { return a.name.localeCompare(b.name); }
     };
-    list.sort(sorters[state.sort] || sorters.featured);
+    if (searchHits && state.sort === 'featured') list.sort(function (a, b) { return rank[a.id] - rank[b.id]; });
+    else list.sort(sorters[state.sort] || sorters.featured);
     return list;
   }
 
   function render() {
     var list = apply();
     if (!list.length) {
-      grid.innerHTML = '<div class="shop__empty"><h3>Nothing matches those filters</h3>' +
-        '<p>Try removing a filter or two — or browse everything.</p>' +
-        '<button class="btn btn--outline btn--small" type="button" data-clear>Clear filters</button></div>';
+      grid.innerHTML = '<div class="shop__empty"><h3>' + (state.q ? 'No results for “' + E.escapeHTML(state.q) + '”' : 'Nothing matches those filters') + '</h3>' +
+        '<p>' + (state.q ? 'Try a stone, a piece or a feeling — “amethyst”, “bracelet”, “calm” — or clear the search.' : 'Try removing a filter or two — or browse everything.') + '</p>' +
+        '<button class="btn btn--outline btn--small" type="button" data-clear>' + (state.q ? 'Clear search & filters' : 'Clear filters') + '</button></div>';
     } else {
       grid.innerHTML = list.map(E.productCardHTML).join('');
     }
-    if (countEl) countEl.textContent = list.length + (list.length === 1 ? ' product' : ' products');
+    if (countEl) countEl.textContent = list.length + (list.length === 1 ? ' product' : ' products') + (state.q ? ' for “' + state.q + '”' : '');
     renderChips();
     if (window.observeReveals) window.observeReveals(grid);
   }
@@ -226,6 +235,11 @@
   function renderChips() {
     if (!chipsEl) return;
     var html = '';
+    if (state.q) {
+      html += '<span class="chip">Search: ' + E.escapeHTML(state.q) +
+        '<button type="button" data-clear-search aria-label="Clear search">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></span>';
+    }
     ['category', 'sub', 'crystal', 'good', 'price'].forEach(function (group) {
       if (group === 'category' && lockedCategory) return;
       state[group].forEach(function (value) {
@@ -248,7 +262,21 @@
   }
 
   function hasActiveFilters() {
-    return ['sub', 'crystal', 'good', 'price'].some(function (k) { return state[k].length; }) || (!lockedCategory && state.category.length);
+    return !!state.q || ['sub', 'crystal', 'good', 'price'].some(function (k) { return state[k].length; }) || (!lockedCategory && state.category.length);
+  }
+
+  /* Sidebar search box: filters as you type (debounced) and on submit */
+  if (searchInput) {
+    var searchTimer = null;
+    var searchForm = searchInput.closest('form');
+    function applySearch() {
+      var q = searchInput.value.trim();
+      if (q === state.q) return;
+      state.q = q;
+      writeURL(); render(); updateHeading();
+    }
+    searchInput.addEventListener('input', function () { clearTimeout(searchTimer); searchTimer = setTimeout(applySearch, 200); });
+    if (searchForm) searchForm.addEventListener('submit', function (e) { e.preventDefault(); clearTimeout(searchTimer); applySearch(); focusResults(); });
   }
 
   /* ---------------------------------------------------------------------- */
@@ -273,8 +301,14 @@
       writeURL(); syncUI(); render(); updateHeading(); focusResults();
       return;
     }
+    if (e.target.closest('[data-clear-search]')) {
+      state.q = '';
+      writeURL(); syncUI(); render(); updateHeading(); focusResults();
+      return;
+    }
     if (e.target.closest('[data-clear]')) {
       ['sub', 'crystal', 'good', 'price'].forEach(function (k) { state[k] = []; });
+      state.q = '';
       if (!lockedCategory) state.category = [];
       writeURL(); syncUI(); render(); updateHeading(); focusResults();
       return;
@@ -336,11 +370,13 @@
   /* Page heading reflects a single selected sub-category on category pages */
   var heading = document.querySelector('[data-sub-heading]');
   var headingDefault = heading ? heading.textContent : '';
+  var titleDefault = document.title;
   function updateHeading() {
+    if (state.q) { document.title = 'Search: ' + state.q + ' — Enchantiica'; } else if (!lockedCategory) { document.title = titleDefault; }
     if (!heading || !lockedCategory) return;
     var label = state.sub.length === 1 ? E.CATEGORIES[lockedCategory].subs[state.sub[0]] : null;
     heading.textContent = label || headingDefault;
-    document.title = (label || headingDefault) + ' — Enchantiica';
+    if (!state.q) document.title = (label || headingDefault) + ' — Enchantiica';
   }
   updateHeading();
 })();

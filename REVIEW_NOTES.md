@@ -296,3 +296,21 @@ like "2I0" in Cormorant's old-style figures.
 * Linked from the Crystals menu, footer, mobile drawer, home "shop by
   intention", the crystals category page and the FAQ.
 * **Verification:** automated sweep (now 16 URLs, plus hover / keyboard / Escape / drawer-accordion checks): 0 issues. HTML validation unchanged. Fixed on the way: Escape now closes a keyboard-opened menu (a dismissed state overrides `:focus-within`), the drawer accordion needed higher-specificity overrides than the desktop positioning, and the guide tip cards were h3s directly under the h1.
+
+## Feature update — search
+
+* **Header search** on every page: a magnifier button opens a panel below the
+  header with a search field; suggestions appear as you type (top six products
+  with thumbnail, stone, type and price, plus matching crystal-guide entries),
+  "See all n results" and Enter go to `shop.html?q=…`. Arrow keys move through
+  suggestions, Escape and clicking outside close it, `/` opens it. The form
+  works without JavaScript (a plain GET to the shop page).
+* **Shop page** understands `?q=`: results keep search ranking under the
+  "Featured" sort and still respect the sidebar filters; a removable "Search:
+  …" chip and a search box at the top of the filters mirror the query; the
+  count reads "13 products for “rose quartz”"; the empty state suggests what to
+  type.
+* Matching is shared (`searchProducts()` in `products.js`): tokenised, every
+  word must match, name hits rank above stone/type hits above intention/
+  description hits. Pages without the catalogue load it on demand when search
+  opens, so the light help/legal pages stay light.
