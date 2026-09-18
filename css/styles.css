@@ -1679,15 +1679,17 @@ a.tag:hover { background: var(--blush-200); color: var(--ink); }
 /* 15. TOAST, MOTION & TRANSITIONS --------------------------------------- */
 .toast {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, 20px);
-  z-index: 200;
+  left: 0; right: 0;
   --toast-bottom: var(--space-5);
   bottom: var(--toast-bottom);
+  margin-inline: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: min(92vw, 460px);
+  z-index: 200;
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  max-width: min(92vw, 460px);
   padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
   background: var(--ink);
   color: var(--cream);
@@ -1695,11 +1697,12 @@ a.tag:hover { background: var(--blush-200); color: var(--ink); }
   box-shadow: var(--shadow-lg);
   font-size: var(--fs-sm);
   opacity: 0;
+  transform: translateY(20px);
   pointer-events: none;
   transition: opacity var(--dur) ease, transform var(--dur) var(--ease);
 }
-.toast.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-@media (max-width: 899.98px) { .toast { --toast-bottom: calc(var(--space-4) + 66px); max-width: calc(100vw - 2rem); } }
+.toast.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+@media (max-width: 899.98px) { .toast { --toast-bottom: calc(var(--space-4) + 66px); max-width: calc(100vw - 2rem); border-radius: var(--radius-lg); } }
 .toast a { color: var(--gold-300); font-weight: 500; white-space: nowrap; padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid rgba(220, 196, 143, 0.5); transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease; }
 .toast a:hover { background: var(--gold-300); color: var(--ink); }
 

@@ -258,3 +258,21 @@ validation unchanged, no remaining sterling or UK references in the site
 files (the UK column in the ring-size conversion table is intentional).
 Prices and review scores now use lining numerals so "AED 210" no longer reads
 like "2I0" in Cormorant's old-style figures.
+
+## Content update — WhatsApp and new products
+
+* **WhatsApp** (+971 55 586 3001) added as a `wa.me` link with a pre-filled
+  greeting: floating button on every page (inside an `aside` landmark), first
+  card on the contact page, footer, and the mobile menu. The toast notification
+  moves above the button on phones.
+* **Five new crystal products:** Raw Stone Chunk (rough), Crystal Tree, Selenite
+  Charging Disc, Crystal Pyramid and Crystal Tower (shapes). Chunks, trees,
+  pyramids and towers are "choose your stone" products: a `variantCrystals`
+  map drives the product page's meaning block and eyebrow, and the shop's
+  crystal filter matches any of the offered stones. Tumblestones already had
+  their own sub-category; towers now come in six stones across three listings.
+* **Fixed along the way:** the toast used `left: 50%` + `translateX(-50%)`,
+  which caps a fixed element's shrink-to-fit width at half the viewport — on
+  phones the message wrapped one word per line. It is now centred with
+  `left/right: 0; margin-inline: auto; width: fit-content`.
+* Automated sweep re-run after the changes: see the line below.
