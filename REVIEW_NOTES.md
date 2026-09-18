@@ -295,3 +295,4 @@ like "2I0" in Cormorant's old-style figures.
   Product pages gained the same benefits list and a link into the guide.
 * Linked from the Crystals menu, footer, mobile drawer, home "shop by
   intention", the crystals category page and the FAQ.
+* **Verification:** automated sweep (now 16 URLs, plus hover / keyboard / Escape / drawer-accordion checks): 0 issues. HTML validation unchanged. Fixed on the way: Escape now closes a keyboard-opened menu (a dismissed state overrides `:focus-within`), the drawer accordion needed higher-specificity overrides than the desktop positioning, and the guide tip cards were h3s directly under the h1.
