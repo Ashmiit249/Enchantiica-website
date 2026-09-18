@@ -130,10 +130,25 @@
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+  /* Escape closes a keyboard-opened menu: focus returns to the parent link and the
+     item is marked dismissed (which overrides :focus-within) until focus leaves it. */
   doc.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     var item = doc.activeElement && doc.activeElement.closest && doc.activeElement.closest('.nav__item');
-    if (item) { item.querySelector('.nav__link').focus(); if (item.classList.contains('is-open')) item.querySelector('.nav__toggle').click(); }
+    if (!item || !item.querySelector('.nav__menu')) return;
+    item.classList.add('is-dismissed');
+    item.querySelector('.nav__link').focus();
+    if (item.classList.contains('is-open')) item.querySelector('.nav__toggle').click();
+  });
+  doc.querySelectorAll('.nav__item').forEach(function (item) {
+    item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) item.classList.remove('is-dismissed'); });
+    item.addEventListener('mouseleave', function () { item.classList.remove('is-dismissed'); });
+    var link = item.querySelector('.nav__link');
+    if (link && item.querySelector('.nav__menu')) {
+      link.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); item.classList.remove('is-dismissed'); var first = item.querySelector('.nav__menu a'); if (first) first.focus(); }
+      });
+    }
   });
 
   /* ---------------------------------------------------------------------- */
