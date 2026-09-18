@@ -193,7 +193,7 @@ and packaging the audit so it can be re-run outside this environment.
 |---|----------|-------|-----|
 | 1 | Design | Numbered step badges (About "How every order is made", Returns "How to start a return"): Cormorant's old-style numerals looked faint inside the 36 px circle, and on the Returns page the step titles sat ~2 rem below their badges because the generic `.prose h3` top margin leaked into the list. | Numerals set in the body face at a legible size; step headings inside `.prose` reset their top margin; badge optically centred on the title line. Verified on both pages. |
 | 2 | Performance | Nothing further: the site ships no images, no third-party scripts, ~12 KB CSS and ≤ 24 KB JS (gzipped) per page, and pages without products no longer load the catalogue. | — |
-| 3 | Tooling | The audit only existed in this sandbox, so the "tested in Chrome, Safari and Firefox" claim could not be reproduced by anyone else, and Firefox/WebKit could not be run here at all. | `tools/audit.js` + `tools/README.md` added: the same sweep, runnable locally with `BROWSER=firefox` or `BROWSER=webkit` via Playwright. Not part of the site build. |
+| 3 | Tooling | The audit only existed in this sandbox, so the "tested in Chrome, Safari and Firefox" claim could not be reproduced by anyone else, and Firefox/WebKit could not be run here at all. | `tools/audit.js` + `tools/README.md` added: the same sweep, runnable locally with `BROWSER=firefox` or `BROWSER=webkit` via Playwright. Not part of the site build. Run end-to-end from the repo (`node tools/audit.js`, Chromium): 0 issues. |
 
 ### Verification
 
