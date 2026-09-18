@@ -7,7 +7,7 @@ checked, what was found, and what changed as a result. Newest pass at the bottom
 
 Every pass combines an automated sweep with a manual visual review.
 
-**Automated sweep** (Playwright + headless Chromium, `scratchpad/audit.js`):
+**Automated sweep** (Playwright + headless Chromium, `tools/audit.js` — see `tools/README.md` to run it yourself, including in Firefox and WebKit):
 
 * Loads all 15 URLs (12 pages plus three product variants and an invalid
   product id) at **375 px, 820 px and 1366 px** widths.
@@ -182,3 +182,17 @@ the documented `<progress>` preference. Visual re-check of the footer (phone),
 FAQ (phone) and shop/FAQ page heads (desktop) confirmed the spacing changes.
 
 ---
+
+## Pass 4 — final design and performance critique
+
+**Scope:** fresh automated sweep on the finished site, HTML validation, a last
+desktop read of the pages not re-checked in pass 3 (jewellery category, returns),
+and packaging the audit so it can be re-run outside this environment.
+
+| # | Reviewer | Issue | Fix |
+|---|----------|-------|-----|
+| 1 | Design | Numbered step badges (About "How every order is made", Returns "How to start a return"): Cormorant's old-style numerals looked faint inside the 36 px circle, and on the Returns page the step titles sat ~2 rem below their badges because the generic `.prose h3` top margin leaked into the list. | Numerals set in the body face at a legible size; step headings inside `.prose` reset their top margin; badge optically centred on the title line. Verified on both pages. |
+| 2 | Performance | Nothing further: the site ships no images, no third-party scripts, ~12 KB CSS and ≤ 24 KB JS (gzipped) per page, and pages without products no longer load the catalogue. | — |
+| 3 | Tooling | The audit only existed in this sandbox, so the "tested in Chrome, Safari and Firefox" claim could not be reproduced by anyone else, and Firefox/WebKit could not be run here at all. | `tools/audit.js` + `tools/README.md` added: the same sweep, runnable locally with `BROWSER=firefox` or `BROWSER=webkit` via Playwright. Not part of the site build. |
+
+### Verification

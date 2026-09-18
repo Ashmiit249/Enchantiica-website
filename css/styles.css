@@ -1665,13 +1665,15 @@ a.tag:hover { background: var(--blush-200); color: var(--ink); }
   border-radius: 50%;
   background: var(--blush-100);
   color: var(--gold-700);
-  font-family: var(--font-heading);
-  font-size: var(--fs-md);
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1;
   display: grid; place-content: center;
+  margin-top: -4px; /* optically centre on the first heading line */
 }
-.steps h3 { font-size: var(--fs-md); margin-bottom: var(--space-1); }
-.steps p { font-size: var(--fs-sm); color: var(--text-2); margin: 0; }
+.steps h3, .prose .steps h3 { font-size: var(--fs-md); margin: 0 0 var(--space-1); }
+.steps p, .prose .steps p { font-size: var(--fs-sm); color: var(--text-2); margin: 0; }
 
 /* 15. TOAST, MOTION & TRANSITIONS --------------------------------------- */
 .toast {

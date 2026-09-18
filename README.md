@@ -57,6 +57,7 @@ which falls back to system fonts if offline.
 │   ├── product.js      Product page renderer (gallery, variants, meaning, related, reviews)
 │   └── cart-page.js    Bag page renderer
 ├── images/             Empty — drop your photos here (see below)
+├── tools/              Optional: the automated audit script used for the review passes (not needed to deploy)
 ├── README.md           This file
 └── REVIEW_NOTES.md     Running log of the review-and-improve passes
 ```
@@ -186,4 +187,5 @@ serialise that object into the provider's checkout call from the
 Flexbox, CSS Grid, custom properties, `aspect-ratio`, `IntersectionObserver`
 and `<details>` — all supported in current Chrome, Safari, Firefox and Edge.
 Motion respects `prefers-reduced-motion`. Verified in headless Chromium
-(see `REVIEW_NOTES.md` for what was checked and how).
+(see `REVIEW_NOTES.md` for what was checked and how). To run the same checks
+in Firefox and WebKit locally, see `tools/README.md`.
