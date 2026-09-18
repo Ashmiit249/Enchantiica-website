@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Bag — Enchantiica</title>
+  <meta name="description" content="Review the crystals and jewellery in your Enchantiica bag.">
+  <meta name="theme-color" content="#FBF8F3">
+  <meta property="og:site_name" content="Enchantiica">
+  <meta property="og:title" content="Your Bag — Enchantiica">
+  <meta property="og:description" content="Review the crystals and jewellery in your Enchantiica bag.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="cart">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="announcement" role="region" aria-label="Announcement">Free UK delivery on orders over £50<span class="announcement__extra"> &nbsp;·&nbsp; Follow us <a href="https://www.instagram.com/enchantiica" target="_blank" rel="noopener">@enchantiica<span class="visually-hidden"> (opens in a new tab)</span></a></span></div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Enchantiica — home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l7 7-7 13L5 9l7-7z"/><path d="M5 9h14"/><path d="M12 2L9 9l3 13 3-13-3-7"/></svg><span>Enchantiica</span></a>
+
+      <nav class="nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Home</a></li>
+          <li><a class="nav__link" href="shop.html">Shop</a></li>
+          <li><a class="nav__link" href="crystals.html">Crystals</a></li>
+          <li><a class="nav__link" href="jewellery.html">Jewellery</a></li>
+          <li><a class="nav__link" href="about.html">About</a></li>
+          <li><a class="nav__link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav__secondary">
+          <a href="faq.html">FAQ</a>
+          <a href="shipping.html">Delivery</a>
+          <a href="returns.html">Returns</a>
+          <a href="cart.html">Your bag</a>
+        </div>
+        <a class="nav__ig" href="https://www.instagram.com/enchantiica" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>@enchantiica<span class="visually-hidden"> (opens in a new tab)</span></span></a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="icon-btn" href="cart.html" aria-label="Bag, 0 items"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" aria-hidden="true">0</span></a>
+        <button class="icon-btn burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="burger__lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="container">
+        <span class="eyebrow">Your bag</span>
+        <h1 id="page-title">Your bag</h1>
+        
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cart" id="cart-app">
+          <p class="visually-hidden" aria-live="polite" data-cart-live></p>
+          <div data-cart-items>
+            <noscript><div class="cart-empty"><h2>JavaScript is needed to use the bag</h2><p>Please enable JavaScript, or <a class="link" href="contact.html">contact us</a> to place an order.</p></div></noscript>
+          </div>
+          <aside class="summary" data-cart-summary aria-labelledby="summary-title" hidden>
+            <h2 id="summary-title">Order summary</h2>
+            <div class="shipping-bar">
+              <p class="shipping-bar__text" data-shipping-text></p>
+              <div class="shipping-bar__track" role="progressbar" aria-label="Progress towards free UK delivery" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-shipping-bar><div class="shipping-bar__fill" data-shipping-fill></div></div>
+            </div>
+            <form class="promo" data-promo-form>
+              <label class="visually-hidden" for="promo">Promo code</label>
+              <input class="form-input" id="promo" type="text" placeholder="Promo code" autocomplete="off" data-promo-input>
+              <button class="btn btn--outline" type="submit">Apply</button>
+            </form>
+            <p class="promo__msg" data-promo-msg aria-live="polite"></p>
+            <div data-rows></div>
+            <button class="btn btn--block" type="button" data-checkout>Proceed to checkout</button>
+            <p class="summary__note">Free UK delivery over £50 · 30-day returns</p>
+            <div class="checkout-note" data-checkout-note role="status">
+              <strong>Demo checkout.</strong> This storefront runs entirely in your browser — payments aren’t connected yet. Your bag is saved on this device so you can come back to it.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--surface" aria-labelledby="cart-bestsellers-title">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <span class="eyebrow">Before you go</span>
+            <h2 id="cart-bestsellers-title">Customers also love</h2>
+          </div>
+          <a class="link-arrow" href="shop.html">Shop everything <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="grid grid--4" data-bestsellers="4"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a class="logo" href="index.html" aria-label="Enchantiica — home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l7 7-7 13L5 9l7-7z"/><path d="M5 9h14"/><path d="M12 2L9 9l3 13 3-13-3-7"/></svg><span>Enchantiica</span></a>
+          <p class="footer__blurb">Ethically sourced crystals and delicate gold-plated jewellery, cleansed and charged with intention before they reach you.</p>
+          <a class="footer__ig" href="https://www.instagram.com/enchantiica" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Follow @enchantiica<span class="visually-hidden"> (opens in a new tab)</span></span></a>
+        </div>
+        <div>
+          <h2 class="footer__title">Shop</h2>
+          <ul class="footer__links">
+            <li><a href="shop.html">All products</a></li>
+            <li><a href="crystals.html">Crystals</a></li>
+            <li><a href="jewellery.html">Jewellery</a></li>
+            <li><a href="crystals.html?sub=packs">Crystal packs</a></li>
+            <li><a href="shop.html?sort=rating">Bestsellers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer__title">Help</h2>
+          <ul class="footer__links">
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="shipping.html">Shipping &amp; delivery</a></li>
+            <li><a href="returns.html">Returns policy</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="cart.html">Your bag</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer__title">Enchantiica</h2>
+          <ul class="footer__links">
+            <li><a href="about.html">Our story</a></li>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="privacy.html#terms">Terms &amp; conditions</a></li>
+            <li><a href="https://www.instagram.com/enchantiica" target="_blank" rel="noopener">Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span data-year>2026</span> Enchantiica. All rights reserved.</p>
+        <p>Crystals are a complement to, not a substitute for, professional care.</p>
+      </div>
+    </div>
+  </footer>
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <script src="js/products.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/cart-page.js" defer></script>
+</body>
+</html>
